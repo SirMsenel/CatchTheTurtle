@@ -7,15 +7,17 @@ screen.title("Cath The Turtle")
 
 game_over = False
 FONT = ('Comic Sans' , 30 , 'normal')
+FONT1 =('Comic Sans' , 100 , 'normal')
 SİZE = 10
 turtle_list = []
 score = 0
 countdwn_turtle = turtle.Turtle()
+countdwn_turtle1 = turtle.Turtle()
 s_c = turtle.Turtle()
 
 def setscoreturtle():
     s_c.hideturtle()
-    s_c.color("red")
+    s_c.color("black")
     s_c.penup()
     th = screen.window_height() / 2
     y = th * 0.9
@@ -30,7 +32,6 @@ def maketurtles(x, y):
         s_c.clear()
         s_c.write(arg="Score: {} ".format(score), move=False, align="center", font=FONT)
 
-       # printx,y)
     turtle_mod.onclick(hand_cl)
     turtle_mod.shape("turtle")
     turtle_mod.color("green")
@@ -60,12 +61,15 @@ def showturtrand():
 def countdwn(time):
     global game_over
     countdwn_turtle.hideturtle()
-    countdwn_turtle.color("black")
+    countdwn_turtle.color("Dark red")
     countdwn_turtle.penup()
     th = screen.window_height() / 2
     y = th * 0.8
     countdwn_turtle.setposition(0, y)
     countdwn_turtle.clear()
+    countdwn_turtle1.color("red")
+    countdwn_turtle1.penup()
+    countdwn_turtle1.hideturtle()
 
     if time > 0 :
         countdwn_turtle.clear()
@@ -74,23 +78,23 @@ def countdwn(time):
     else:
         game_over = True
         countdwn_turtle.clear()
+        countdwn_turtle1.clear()
         hideturt()
-        countdwn_turtle.write(arg="Game Over!", move=False, align="center", font=FONT)
+        countdwn_turtle1.write(arg="Game Over!", move=False, align="center", font=FONT1)
 
 
 
 
+def starttogame():
+    turtle.tracer(0)
 
+    setscoreturtle()
+    setupturtles()
+    showturtrand()
+    hideturt()
+    countdwn(10)
 
+    turtle.tracer(1)
 
-
-turtle.tracer(0)
-
-setscoreturtle()
-setupturtles()
-hideturt()
-showturtrand()
-countdwn(15)
-
-turtle.tracer(1)
+starttogame()
 turtle.mainloop()
